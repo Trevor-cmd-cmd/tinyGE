@@ -5,7 +5,7 @@ to use this engine you need to download opengl/ and CMakeLists.txt then inlcude 
 
 ```cpp
 #include <eng.h>
-```cpp
+```
 
 ![Status](https://img.shields.io/badge/status-in--development-yellow)
 ![Language](https://img.shields.io/badge/language-C%2B%2B-blue)
