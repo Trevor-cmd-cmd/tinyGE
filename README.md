@@ -1,7 +1,23 @@
-# My Engine
-this engine was built by Trevor from scratch as a passion project.
+# Engine Name
+### This engine was built by Trevor from scratch as a passion project.
 
-to use this engine you need to download opengl/ and CMakeLists.txt then inlcude it by using #include <eng.h>
+
+
+## Installation
+
+To Download this you will need CMake and GLFW.
+
+Windows (CMD)
+```shell
+winget install Kitware.CMake
+```
+
+Linux (TERMINAL)
+```bash
+sudo apt update
+sudo apt install cmake libglfw3-dev
+```
+
 
 ```cpp
 #include <eng.h>
