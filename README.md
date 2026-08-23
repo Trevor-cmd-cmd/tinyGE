@@ -1,6 +1,6 @@
 # Engine Name
-### This engine was built by Trevor from scratch as a passion project.
-
+#### This engine was built by Trevor from scratch as a passion project.
+I started this project because I wanted to learn want the back-end of game development was like.
 
 
 ## Installation
@@ -17,21 +17,26 @@ Linux (TERMINAL)
 sudo apt update
 sudo apt install cmake libglfw3-dev
 ```
+## Getting started
 
+This is the minimum code needed to start.
 
 ```cpp
 #include <eng.h>
+
+int main()
+{
+    eng::init()
+    eng::createWindow("Basic Window", 1920, 1080);
+
+    while(!eng::tick)
+    {
+        // Game code here
+    }
+    
+}
 ```
 
-![Status](https://img.shields.io/badge/status-in--development-yellow)
-![Language](https://img.shields.io/badge/language-C%2B%2B-blue)
-![Renderer](https://img.shields.io/badge/renderer-OpenGL-orange)
-
-## functions
-
-init();
-makeWindow();
-tick();
 
 ## Requirements
 
@@ -39,3 +44,4 @@ tick();
 - CMake
 - OpenGL 3.3+
 - GLFW
+- Windows 10+ or Linux
