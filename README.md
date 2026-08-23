@@ -13,3 +13,10 @@ makeWindow();
 tick();
 ```cpp
 #include <eng.h>
+
+## Requirements
+
+- C++ compiler
+- CMake
+- OpenGL 3.3+
+- GLFW
