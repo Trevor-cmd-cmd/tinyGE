@@ -1,4 +1,4 @@
-# Engine Name
+# Tiny Graphic Engine
 #### This engine was built by Trevor from scratch as a passion project.
 I started this project because I wanted to learn want the back-end of game development was like.
 
@@ -22,7 +22,7 @@ sudo apt install cmake libglfw3-dev
 This is the minimum code needed to start.
 
 ```cpp
-#include <eng.h>
+#include <tinyGE/tinyGE.h>
 
 int main()
 {
