@@ -7,7 +7,10 @@
 namespace eng
 {
     GLFWwindow* window;
-    Camera camera(Vector3(0.0f, 0.0f, 0.0f));
+    Camera camera(glm::vec3(0.0f, 0.0f, 0.0f));
+    Camera cam;
+    Camera* ac = nullptr;
+    Shader* as = nullptr;
     void init()
     {
         if(!glfwInit())
@@ -15,7 +18,6 @@ namespace eng
             std::cerr << "Failed to initialize GLFW." << std::endl;
             return;
         }
-        std::cout << "Engine initialized." << std::endl;
     }
 
     void makewindow(int width, int height, const char* title)
@@ -41,11 +43,20 @@ namespace eng
 
     bool tick()
     {
-        camera.UpdateCamera(Vector3(1.0f, 0.0f, 0.0f), "cameraPos", 0);
-        
         glfwSwapBuffers(window);
         glfwPollEvents();
+
+
+        Camera* activeCamera = ac; //!= nullptr ? ac : &camera;
+        glUseProgram(as->shaderProgramm);
+
+        GLint cameraPosLocation = glGetUniformLocation(as->shaderProgramm, "cameraPos");
+        GLint size = glGetUniformLocation(as->shaderProgramm, "zoom");
+        glUniform1f(size, 0.1f);
+        glUniform3f(cameraPosLocation, activeCamera->position.x, activeCamera->position.y, activeCamera->position.z);
+            
         
+
         return !glfwWindowShouldClose(window);
     }
     

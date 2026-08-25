@@ -1,23 +1,46 @@
-#include <glad.h>
+#include <glad/glad.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <filesystem>
 #include "shaders.h"
-
-Shader::Shader(const char* v, const char* f)
-    : shaderProgramm(0), vertexShaderS(v), fragmentShaderS(f) {}
+#include <eng.h>
+Shader::Shader(ShaderType t)
+    : shaderProgramm(0), type(t)
+{
+    
+    createShader();
+    eng::as = this;
+}
 
 void Shader::createShader()
 {
+    int success;
+    char infoLog[512];
+    auto shaderPaths = getShaderPaths(type);
+    auto* vertexShaderS = shaderPaths.vertexPath.c_str();
+    auto* fragmentShaderS = shaderPaths.fragmentPath.c_str();
+    // add debug log
+    
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderS, nullptr);
     glCompileShader(vertexShader);
 
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
+        std::cout << infoLog;
+    }
     unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragmentShaderS, nullptr);
     glCompileShader(fragmentShader);
+
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
+        std::cout << infoLog;
+    }
 
     unsigned int shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
@@ -29,13 +52,17 @@ void Shader::createShader()
     shaderProgramm = shaderProgram;
 }
 
+void checkCompile(){
+
+}
+
 std::string openShader(const std::string& filePath)
 {
     
     std::filesystem::path currentFile = __FILE__;
-    const std::string h = currentFile.parent_path().parent_path();
-    std::cout << h + "/assets/shaders/" + filePath << "\n";
-    std::ifstream file(h + "/assets/shaders/" + filePath);
+    const std::string h = currentFile.parent_path().parent_path().parent_path().parent_path();;
+    std::cout << h +"/opengl/shaders/" + filePath << "\n";
+    std::ifstream file(h + "/opengl/shaders/" + filePath);
     if (file.is_open())
     {
         std::stringstream buffer;
@@ -45,3 +72,15 @@ std::string openShader(const std::string& filePath)
     
     return "";
 }
+
+
+ShaderSourcePaths getShaderPaths(ShaderType type) 
+{
+    switch (type) {
+        case ShaderType::basic:
+            return { openShader("vertex.glsl"), openShader("fragment.glsl") };
+        default:
+            return { "", "" };
+    }
+}
+

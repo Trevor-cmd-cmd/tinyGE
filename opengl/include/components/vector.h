@@ -15,4 +15,19 @@ struct Vector3 {
 
         return *this;
     }
+    
+};
+
+struct Vector2 {
+    float x, y;
+
+    Vector2() : x(0.0f), y(0.0f) {}
+    Vector2(float x_, float y_) : x(x_), y(y_) {}
+};
+
+struct Vector5 {
+    float x, y, z, u, v;
+
+    Vector5(float x_, float y_, float z_, float u_, float v_)
+        : x(x_), y(y_), z(z_), u(u_), v(v_) {}
 };

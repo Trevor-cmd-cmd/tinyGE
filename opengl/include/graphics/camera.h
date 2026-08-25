@@ -1,12 +1,13 @@
 #pragma once
 
 #include "vector.h"
-#include <glad.h>
-
+#include <glad/glad.h>
+#include <glm/glm.hpp>
 struct Camera
 {
-    Vector3 position;
+    glm::vec3 position;
 
-    Camera(Vector3 pos);
-    void UpdateCamera(Vector3 pos, const char* name, unsigned int shaderProgram);
+    Camera(glm::vec3 pos = {0, 0, 0});
+    void UpdateCamera(glm::vec3 pos, const char* name, unsigned int shaderProgram);
+    void use();
 };

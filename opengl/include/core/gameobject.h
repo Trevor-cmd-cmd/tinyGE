@@ -3,12 +3,11 @@
 #include "mesh.h"
 #include "shaders.h"
 #include "vector.h"
-
+#include "transform.h"
 struct GameObject
 {
-    Vector3 position;
-    Vector3 scale;
-    Vector3 rotation;
+    Transform transform;
+    
     Mesh* mesh;
     Shader* shader;
 };

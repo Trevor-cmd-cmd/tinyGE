@@ -2,15 +2,27 @@
 
 #include <string>
 #include "vector.h"
+
+enum class ShaderType{ basic, };
+
 struct Shader
 {
-    unsigned int shaderProgramm;
-    const char* vertexShaderS;
-    const char* fragmentShaderS;
+    public:
+        unsigned int shaderProgramm;
+    
+    ShaderType type;
 
-    Shader(const char* v, const char* f);
+    Shader(ShaderType t);
     void createShader();
     
 };
 
 std::string openShader(const std::string& filePath);
+
+struct ShaderSourcePaths {
+    std::string vertexPath;
+    std::string fragmentPath;
+};
+
+
+ShaderSourcePaths getShaderPaths(ShaderType type);
