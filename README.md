@@ -1,4 +1,4 @@
-# Tiny Graphic Engine
+# Tiny Graphics Engine
 #### This engine was built by Trevor from scratch as a passion project.
 I started this project because I wanted to learn want the back-end of game development was like.
 
@@ -26,10 +26,10 @@ This is the minimum code needed to start.
 
 int main()
 {
-    eng::init()
-    eng::createWindow("Basic Window", 1920, 1080);
+    tinyGE::init()
+    tinyGE::createWindow("Basic Window", 1920, 1080);
 
-    while(!eng::tick)
+    while(!tinyGE::tick)
     {
         // Game code here
     }
@@ -42,6 +42,6 @@ int main()
 
 - C++ compiler
 - CMake
-- OpenGL 3.3+
+- OpenGL 4.6
 - GLFW
 - Windows 10+ or Linux
